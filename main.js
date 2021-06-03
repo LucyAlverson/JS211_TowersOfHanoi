@@ -8,13 +8,13 @@ const rl = readline.createInterface({
 });
 
 // An object that represents the three stacks of Towers of Hanoi; 
-  // * each key is an array of Numbers: 
-    // * A is the far-left, 
-    // * B is the middle, 
-    // * C is the far-right stack
-      // * Each number represents the largest to smallest tokens: 
-        // * 4 is the largest, 
-        // * 1 is the smallest
+// * each key is an array of Numbers: 
+// * A is the far-left, 
+// * B is the middle, 
+// * C is the far-right stack
+// * Each number represents the largest to smallest tokens: 
+// * 4 is the largest, 
+// * 1 is the smallest
 
 let stacks = {
   a: [4, 3, 2, 1],
@@ -30,26 +30,40 @@ const printStacks = () => {
 }
 
 // Next, what do you think this function should do?
-const movePiece = () => {
-  // Your code here
-
+const movePiece = (startStack, endStack) => {
+  let element = stacks[startStack].pop()
+  stacks[endStack].push(element)
 }
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
-const isLegal = () => {
-  // Your code here
-
+const isLegal = (startStack, endStack) => {
+  if (stacks[startStack].length - 1 > 0 && stacks[endStack].length == 0) {
+    return true
+  } else if (stacks[startStack][stacks[startStack].length - 1] < stacks[endStack][stacks[endStack].length - 1]) {
+    return true
+  } else { return false }
 }
 
 // What is a win in Towers of Hanoi? When should this function run?
+// A win in Towers of Hanoi is when any one of the stacks has a length of 4.
 const checkForWin = () => {
-  // Your code here
-
+  const aStackWin = stacks['a'].length === 4;
+  const bStackWin = stacks['b'].length === 4;
+  const cStackWin = stacks['c'].length === 4;
+  const winExists = aStackWin || bStackWin || cStackWin;
+  return winExists;
 }
 
 // When is this function called? What should it do with its argument?
+// Use if to specify a block of code to be executed, if a specified condition is true.
+
 const towersOfHanoi = (startStack, endStack) => {
   // Your code here
+  // call is legal before we do the move
+  if (isLegal(startStack, endStack)) {
+    movePiece(startStack, endStack);
+  } else
+
 
 }
 
