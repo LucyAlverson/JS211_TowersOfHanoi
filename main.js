@@ -65,7 +65,6 @@ const towersOfHanoi = (startStack, endStack) => {
   } else
 
 
-}
 
 const getPrompt = () => {
   printStacks();
